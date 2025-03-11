@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Wedding Budget Calculator - Plan Your Dream Wedding Effortlessly</title>
+    <meta name="description" content="Free Indian Wedding Budget Calculator to plan and manage your wedding expenses. Customize budget allocations for venue, catering, decor, outfits, and more.">
+    <meta name="keywords" content="Indian wedding budget, wedding calculator, wedding planning, budget planner, Indian wedding expenses, save money on wedding, wedding cost calculator, Indian wedding planning">
+    <meta property="og:title" content="Indian Wedding Budget Calculator">
+    <meta property="og:description" content="Plan your dream Indian wedding with our free budget calculator. Easily allocate funds across all wedding categories.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/indian-wedding-calculator">
+    <meta property="og:image" content="https://yourwebsite.com/images/wedding-calculator-preview.jpg">
+    <link rel="canonical" href="https://yourwebsite.com/indian-wedding-calculator">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <div class="logo-icon"><i class="fas fa-heart"></i></div>
+                <span class="nav-logo-text">Wedding Budget</span>
+            </div>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#calculator" class="nav-link">Calculator</a></li>
+                <li><a href="#how-to-use" class="nav-link">How to Use</a></li>
+                <li><a href="#charts" class="nav-link">Charts</a></li>
+                <li><a href="#about-indian-weddings" class="nav-link">About Indian Weddings</a></li>
+                <li><a href="#saving-tips" class="nav-link">Saving Tips</a></li>
+                <li><a href="#faqs" class="nav-link">FAQs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon"><i class="fas fa-heart"></i></div>
+                <h1>Indian Wedding Budget Calculator</h1>
+            </div>
+            <p class="tagline">Plan Your Dream Wedding Effortlessly</p>
+        </header>
+
+        <!-- Ad Banner Section -->
+        <div class="ad-container top-ad">
+            <div class="ad-placeholder">
+                <p>Advertisement Space</p>
+                <!-- AdSense code would go here -->
+            </div>
+        </div>
+
+        <main>
+            <section id="calculator" class="intro-section">
+                <div class="card">
+                    <h2>Welcome to Your Wedding Budget Planner</h2>
+                    <p>Planning a wedding can be overwhelming, especially when it comes to managing expenses. Our calculator helps you allocate your budget across different categories to ensure your special day is perfect without financial stress.</p>
+                    
+                    <div class="wedding-style-selector">
+                        <h3>Select Your Wedding Style:</h3>
+                        <div class="style-options">
+                            <button class="style-btn active" data-style="budget">Budget Friendly</button>
+                            <button class="style-btn" data-style="midrange">Mid-Range</button>
+                            <button class="style-btn" data-style="luxury">Luxury</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="budget-input-section">
+                <div class="card">
+                    <h2>Enter Your Total Budget</h2>
+                    <div class="budget-input-container">
+                        <span class="currency">₹</span>
+                        <input type="number" id="totalBudget" placeholder="Enter amount in INR" min="100000">
+                    </div>
+                    <button id="calculateBtn" class="primary-btn">Calculate Budget Breakdown</button>
+                </div>
+            </section>
+
+            <section class="budget-breakdown-section" id="budgetBreakdown" style="display: none;">
+                <div class="card">
+                    <h2>Budget Breakdown</h2>
+                    <p class="description">Adjust the sliders to customize your budget allocation for each category.</p>
+                    
+                    <div class="categories-container" id="categoriesContainer">
+                        <!-- Categories will be dynamically added here -->
+                    </div>
+
+                    <div class="summary-container">
+                        <div class="summary-row">
+                            <span>Allocated Budget:</span>
+                            <span id="allocatedBudget">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Remaining Budget:</span>
+                            <span id="remainingBudget">₹0</span>
+                        </div>
+                    </div>
+
+                    <div id="charts" class="charts-container">
+                        <h3>Budget Visualization</h3>
+                        <div class="chart-wrapper">
+                            <canvas id="budgetPieChart"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="budgetBarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="detailed-calculations" id="detailedCalculations">
+                        <h3>Detailed Cost Breakdown</h3>
+                        <div class="calculation-tabs">
+                            <button class="calc-tab active" data-tab="overview">Overview</button>
+                            <button class="calc-tab" data-tab="venue">Venue & Catering</button>
+                            <button class="calc-tab" data-tab="decor">Decoration</button>
+                            <button class="calc-tab" data-tab="attire">Attire</button>
+                            <button class="calc-tab" data-tab="other">Other</button>
+                        </div>
+                        <div class="calculation-content">
+                            <div class="calc-panel active" id="overviewPanel">
+                                <!-- Overview content will be added dynamically -->
+                            </div>
+                            <div class="calc-panel" id="venuePanel">
+                                <!-- Venue content will be added dynamically -->
+                            </div>
+                            <div class="calc-panel" id="decorPanel">
+                                <!-- Decor content will be added dynamically -->
+                            </div>
+                            <div class="calc-panel" id="attirePanel">
+                                <!-- Attire content will be added dynamically -->
+                            </div>
+                            <div class="calc-panel" id="otherPanel">
+                                <!-- Other content will be added dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pdf-export-section">
+                        <h3>Download Your Wedding Budget Plan</h3>
+                        <p>Get a detailed PDF report of your wedding budget plan to share with family, vendors, or your wedding planner.</p>
+                        
+                        <div class="pdf-options">
+                            <div class="pdf-option">
+                                <input type="checkbox" id="includeCharts" checked>
+                                <label for="includeCharts">Include charts and visualizations</label>
+                            </div>
+                            <div class="pdf-option">
+                                <input type="checkbox" id="includeDetails" checked>
+                                <label for="includeDetails">Include detailed calculations</label>
+                            </div>
+                            <div class="pdf-option">
+                                <input type="checkbox" id="includeTips">
+                                <label for="includeTips">Include money-saving tips</label>
+                            </div>
+                        </div>
+                        
+                        <div class="pdf-customization">
+                            <div class="form-group">
+                                <label for="coupleNames">Couple Names (Optional):</label>
+                                <input type="text" id="coupleNames" placeholder="e.g., Priya & Rahul">
+                            </div>
+                            <div class="form-group">
+                                <label for="weddingDate">Wedding Date (Optional):</label>
+                                <input type="date" id="weddingDate">
+                            </div>
+                        </div>
+                        
+                        <button id="downloadBtn" class="primary-btn download-btn">
+                            <i class="fas fa-download"></i> Download Detailed PDF Report
+                        </button>
+                    </div>
+
+                    <div class="share-container">
+                        <h3>Share Your Budget Plan</h3>
+                        <div class="share-buttons">
+                            <button class="share-btn whatsapp-btn" id="whatsappShareBtn">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="share-btn email-btn" id="emailShareBtn">
+                                <i class="fas fa-envelope"></i> Email
+                            </button>
+                            <button class="share-btn facebook-btn" id="facebookShareBtn">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                            <button class="share-btn twitter-btn" id="twitterShareBtn">
+                                <i class="fab fa-twitter"></i> Twitter
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="printBtn" class="secondary-btn"><i class="fas fa-print"></i> Print Budget Plan</button>
+                        <button id="resetBtn" class="secondary-btn"><i class="fas fa-redo"></i> Reset Calculator</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ad Banner Section -->
+            <div class="ad-container mid-ad">
+                <div class="ad-placeholder">
+                    <p>Advertisement Space</p>
+                    <!-- AdSense code would go here -->
+                </div>
+            </div>
+
+            <section id="how-to-use" class="how-to-use-section">
+                <div class="card">
+                    <h2>How to Use This Calculator</h2>
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Select Your Wedding Style</h3>
+                                <p>Choose between Budget-Friendly, Mid-Range, or Luxury options to get appropriate allocation percentages for your wedding type.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Enter Your Total Budget</h3>
+                                <p>Input your overall wedding budget in Indian Rupees (INR). We recommend a minimum of ₹1,00,000 for realistic planning.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Review Category Breakdown</h3>
+                                <p>See how your budget is allocated across different wedding expense categories based on your selected style.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Customize Allocations</h3>
+                                <p>Use the sliders to adjust the percentage allocated to each category according to your priorities and preferences.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Save or Share Your Plan</h3>
+                                <p>Download your budget plan as a PDF, print it, or share it with family members, your partner, or wedding vendors.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-indian-weddings" class="about-weddings-section">
+                <div class="card">
+                    <h2>About Indian Weddings</h2>
+                    <p>Indian weddings are known for their grandeur, rich traditions, and multi-day celebrations. Understanding the typical components can help you plan your budget more effectively.</p>
+                    
+                    <div class="wedding-info-grid">
+                        <div class="wedding-info-card">
+                            <div class="info-icon"><i class="fas fa-calendar-day"></i></div>
+                            <h3>Traditional Events</h3>
+                            <ul>
+                                <li><strong>Engagement (Roka/Sagai):</strong> The official announcement of the couple's intention to marry</li>
+                                <li><strong>Mehndi:</strong> Henna application ceremony for the bride and female guests</li>
+                                <li><strong>Sangeet:</strong> Musical celebration with performances by family members</li>
+                                <li><strong>Haldi:</strong> Turmeric application ceremony for good luck and glowing skin</li>
+                                <li><strong>Wedding Ceremony:</strong> The main event with religious rituals</li>
+                                <li><strong>Reception:</strong> Post-wedding celebration and dinner</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="wedding-info-card">
+                            <div class="info-icon"><i class="fas fa-rupee-sign"></i></div>
+                            <h3>Cost Factors</h3>
+                            <ul>
+                                <li><strong>Guest Count:</strong> Indian weddings typically have 150-500+ guests</li>
+                                <li><strong>Venue:</strong> From temples to luxury hotels or destination weddings</li>
+                                <li><strong>Season:</strong> Peak wedding season (Nov-Feb) costs more than off-season</li>
+                                <li><strong>Location:</strong> Metropolitan cities are more expensive than smaller towns</li>
+                                <li><strong>Duration:</strong> Multi-day celebrations increase costs proportionally</li>
+                                <li><strong>Customs:</strong> Regional traditions may require specific items or ceremonies</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="wedding-info-card">
+                            <div class="info-icon"><i class="fas fa-map-marked-alt"></i></div>
+                            <h3>Regional Variations</h3>
+                            <p>Wedding traditions and costs vary significantly across different regions of India:</p>
+                            <ul>
+                                <li><strong>North Indian:</strong> Typically larger with more elaborate ceremonies</li>
+                                <li><strong>South Indian:</strong> More traditional with specific religious customs</li>
+                                <li><strong>Bengali:</strong> Unique rituals spread over multiple days</li>
+                                <li><strong>Gujarati/Rajasthani:</strong> Colorful celebrations with distinctive customs</li>
+                                <li><strong>Maharashtrian:</strong> Simpler ceremonies with traditional elements</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="saving-tips" class="saving-tips-section">
+                <div class="card">
+                    <h2>Money-Saving Tips for Indian Weddings</h2>
+                    <p>Planning a beautiful wedding doesn't have to break the bank. Here are practical tips to help you save money while still creating a memorable celebration.</p>
+                    
+                    <div class="tips-container">
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-users"></i></div>
+                            <div class="tip-content">
+                                <h3>Trim Your Guest List</h3>
+                                <p>The single most effective way to reduce wedding costs is to limit your guest count. Consider inviting only close family and friends rather than distant relatives or acquaintances.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">₹1,500-3,000 per guest</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <div class="tip-content">
+                                <h3>Choose Off-Season Dates</h3>
+                                <p>Avoid peak wedding season (November to February) and consider months like June-September when venues and vendors offer significant discounts.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">20-30% on venue and vendors</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-utensils"></i></div>
+                            <div class="tip-content">
+                                <h3>Optimize Catering Costs</h3>
+                                <p>Choose a venue that allows outside catering, opt for a lunch reception instead of dinner, and reduce the number of food counters while maintaining quality.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">15-25% on food costs</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-camera"></i></div>
+                            <div class="tip-content">
+                                <h3>Prioritize Photography Services</h3>
+                                <p>Instead of booking full-day coverage for all events, prioritize key ceremonies and reduce hours for less important functions. Consider hiring photographers for specific events only.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">₹20,000-50,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-tshirt"></i></div>
+                            <div class="tip-content">
+                                <h3>Rent or Reuse Outfits</h3>
+                                <p>Consider renting wedding attire or buying outfits that can be reused for other occasions. Designer replicas can also look stunning at a fraction of the cost.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">40-60% on wedding attire</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-envelope-open-text"></i></div>
+                            <div class="tip-content">
+                                <h3>Go Digital with Invitations</h3>
+                                <p>Use digital invitations for most guests and print physical cards only for elderly relatives or VIP guests who would appreciate traditional invitations.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">₹15,000-30,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-calendar-check"></i></div>
+                            <div class="tip-content">
+                                <h3>Combine Events</h3>
+                                <p>Consider combining ceremonies like Mehndi and Sangeet into a single event to save on venue, decoration, and catering costs.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">₹50,000-1,00,000 per event</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tip-item">
+                            <div class="tip-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                            <div class="tip-content">
+                                <h3>Negotiate with Vendors</h3>
+                                <p>Always negotiate with vendors and ask for package deals when booking multiple services. Early bookings often come with discounts.</p>
+                                <div class="saving-estimate">
+                                    <span class="saving-label">Potential Savings:</span>
+                                    <span class="saving-value">10-15% on total vendor costs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ad Banner Section -->
+            <div class="ad-container mid-ad">
+                <div class="ad-placeholder">
+                    <p>Advertisement Space</p>
+                    <!-- AdSense code would go here -->
+                </div>
+            </div>
+
+            <section id="faqs" class="faqs-section">
+                <div class="card">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What's the difference between the wedding styles?</h3>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>The three wedding styles differ in how they allocate your budget across categories:</p>
+                                <ul>
+                                    <li><strong>Budget-Friendly:</strong> Prioritizes essentials like venue, catering, and attire while minimizing costs for decorations and entertainment.</li>
+                                    <li><strong>Mid-Range:</strong> Offers a balanced allocation with moderate spending across all categories.</li>
+                                    <li><strong>Luxury:</strong> Allocates more to decorations, entertainment, and premium services while slightly reducing the venue percentage.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Is my data saved or shared with anyone?</h3>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>No, your budget information is not saved on any server or shared with third parties. This calculator runs entirely in your browser, and your data remains private unless you choose to share it.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Can I save my budget plan for later?</h3>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, you can download your budget plan as a PDF document by clicking the "Download as PDF" button. You can also print it directly using the "Print Budget Plan" button.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What's a realistic budget for an Indian wedding?</h3>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Indian wedding costs vary widely based on location, guest count, and style preferences:</p>
+                                <ul>
+                                    <li><strong>Budget-Friendly:</strong> ₹5-10 lakhs</li>
+                                    <li><strong>Mid-Range:</strong> ₹10-25 lakhs</li>
+                                    <li><strong>Luxury:</strong> ₹25 lakhs and above</li>
+                                </ul>
+                                <p>These are general estimates and can vary significantly based on your specific requirements and location.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How can I reduce my wedding costs?</h3>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Here are some effective ways to reduce wedding costs:</p>
+                                <ul>
+                                    <li>Limit your guest list</li>
+                                    <li>Choose an off-season wedding date</li>
+                                    <li>Select a venue that allows outside catering</li>
+                                    <li>Prioritize spending on what matters most to you</li>
+                                    <li>Consider digital invitations instead of printed ones</li>
+                                    <li>Rent outfits instead of buying them</li>
+                                    <li>Book vendors well in advance to get better rates</li>
+                                </ul>
+                                <p>Check out our <a href="#saving-tips">Money-Saving Tips</a> section for more detailed advice.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How accurate is this wedding budget calculator?</h3>
+                                <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>This calculator provides estimates based on typical Indian wedding costs and industry standards. However, actual costs can vary based on your location, preferences, and specific vendor choices. Use this as a starting point for your planning and adjust as needed based on quotes from your actual vendors.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Ad Banner Section -->
+        <div class="ad-container bottom-ad">
+            <div class="ad-placeholder">
+                <p>Advertisement Space</p>
+                <!-- AdSense code would go here -->
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Indian Wedding Budget Calculator</h3>
+                    <p>A free tool to help couples plan their wedding budget efficiently.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#how-to-use">How to Use</a></li>
+                        <li><a href="#charts">Charts</a></li>
+                        <li><a href="#about-indian-weddings">About Indian Weddings</a></li>
+                        <li><a href="#saving-tips">Saving Tips</a></li>
+                        <li><a href="#faqs">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Share</h3>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Indian Wedding Budget Calculator | Made with <i class="fas fa-heart"></i> for happy couples</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
